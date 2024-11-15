@@ -1,0 +1,88 @@
+<div class="row align-items-center">
+    <div class="col">
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Posición</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Contrato</th>
+            <th scope="col">Estado</th>
+            <th colspan="2">Operaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of empleados; trackBy: trackById">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.apellido }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.telefono }}</td>
+            <td>{{ item.direccion }}</td>
+            <td>{{ item.posicion }}</td>
+            <td>{{ item.salario }}</td>
+            <td>{{ item.contrato }}</td>
+            <td>{{ item.estado }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="editar(item)">E</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="eliminar(item.id)">B</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="col">
+      <form [formGroup]="empleadosForm" (ngSubmit)="guardar()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="apellido" formControlName="apellido">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo</label>
+          <input type="text" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input type="text" class="form-control" id="telefono" formControlName="telefono">
+        </div>
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input type="text" class="form-control" id="direccion" formControlName="direccion">
+        </div>
+        <div class="mb-3">
+          <label for="posicion" class="form-label">Posición</label>
+          <input type="text" class="form-control" id="posicion" formControlName="posicion">
+        </div>
+        <div class="mb-3">
+          <label for="salario" class="form-label">Salario</label>
+          <input type="text" class="form-control" id="salario" formControlName="salario">
+        </div>
+        <div class="mb-3">
+          <label for="contrato" class="form-label">Contrato</label>
+          <input type="text" class="form-control" id="contrato" formControlName="contrato">
+        </div>
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <input type="text" class="form-control" id="estado" formControlName="estado">
+        </div>
+        <br>
+        <button type="submit" [disabled]="!empleadosForm.valid">
+          {{ empleadoEditar ? 'Actualizar' : 'Guardar' }}
+        </button>
+        <br>
+      </form>
+    </div>
+  </div>
+  
